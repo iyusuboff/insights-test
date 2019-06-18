@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+      javax:
+        persistence:
+          query:
+            timeout: 600000
+  datasource:
+    url: jdbc:h2:mem:sdlc;Mode=MYSQL
+
+# changed to avoid collision with EA and IA
+flyway:
+  baselineOnMigrate: true # to be able to use non-empty db.
+  baselineVersion: 0
+  table: jirashim_schema_version
+  locations: db/migration/common,db/migration/{vendor}
